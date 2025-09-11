@@ -2,3 +2,5 @@
 venv/
 *.png
 *.db
+movies_admin/config/.env
+postgresql/
