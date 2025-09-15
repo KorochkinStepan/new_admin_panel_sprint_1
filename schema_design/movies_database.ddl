@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS content.film_work (
     modified timestamp with time zone
 );
 
-CREATE INDEX film_work_title_idx ON content.film_work(creation_date);
+CREATE INDEX film_work_title_idx ON content.film_work(title);
 CREATE INDEX film_work_creation_date_idx ON content.film_work(creation_date);
 #Предполагаю что запросы по rating будут обладать низкой селективностью, поэтому считаю не нужным индекс по этому столбцу
 
@@ -45,8 +45,9 @@ CREATE TABLE IF NOT EXISTS content.person_film_work (
 	role TEXT NOT NULL,
     created timestamp with time zone
 );
-CREATE UNIQUE INDEX person_film_work_idx ON content.person_film_work(film_work_id, person_id);
+CREATE UNIQUE INDEX person_film_work_idx ON content.person_film_work(film_work_id, person_id, role);
 # Исключаем дубликаты в таблице, + добавляем скорости при поиске.
+
 
 #Промежуточная таблица жанр-фильм
 CREATE TABLE IF NOT EXISTS content.genre_film_work (

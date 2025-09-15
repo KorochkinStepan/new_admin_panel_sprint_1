@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-09 22:45+0300\n"
+"POT-Creation-Date: 2025-09-15 21:43+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,51 +22,55 @@ msgstr ""
 msgid "movies"
 msgstr ""
 
-#: .\movies\models.py:27
+#: .\movies\models.py:26
 msgid "name"
 msgstr ""
 
-#: .\movies\models.py:28 .\movies\models.py:60
+#: .\movies\models.py:27 .\movies\models.py:58
 msgid "description"
 msgstr ""
 
-#: .\movies\models.py:34
+#: .\movies\models.py:31
 msgid "Genre"
 msgstr ""
 
-#: .\movies\models.py:35
+#: .\movies\models.py:32
 msgid "Genres"
 msgstr ""
 
-#: .\movies\models.py:41
+#: .\movies\models.py:39
 msgid "full_name"
 msgstr ""
 
-#: .\movies\models.py:47
+#: .\movies\models.py:43
 msgid "Person"
 msgstr ""
 
-#: .\movies\models.py:48
+#: .\movies\models.py:44
 msgid "Persons"
 msgstr ""
 
-#: .\movies\models.py:56
+#: .\movies\models.py:55
 msgid "film"
 msgstr ""
 
-#: .\movies\models.py:57
+#: .\movies\models.py:55
 msgid "tv show"
 msgstr ""
 
-#: .\movies\models.py:59
+#: .\movies\models.py:56
+msgid "file_path"
+msgstr ""
+
+#: .\movies\models.py:57
 msgid "title"
 msgstr ""
 
-#: .\movies\models.py:61
+#: .\movies\models.py:59
 msgid "creation_date"
 msgstr ""
 
-#: .\movies\models.py:62
+#: .\movies\models.py:61
 msgid "rating"
 msgstr ""
 
@@ -74,14 +78,42 @@ msgstr ""
 msgid "type"
 msgstr ""
 
-#: .\movies\models.py:70
+#: .\movies\models.py:68
 msgid "Film Work"
 msgstr ""
 
-#: .\movies\models.py:71
+#: .\movies\models.py:69
 msgid "Films"
 msgstr ""
 
-#: .\movies\models.py:84
+#: .\movies\models.py:90
+msgid "actor"
+msgstr ""
+
+#: .\movies\models.py:91
+msgid "producer"
+msgstr ""
+
+#: .\movies\models.py:92
+msgid "director"
+msgstr ""
+
+#: .\movies\models.py:93
+msgid "writer"
+msgstr ""
+
+#: .\movies\models.py:94
+msgid "screenwriter"
+msgstr ""
+
+#: .\movies\models.py:95
+msgid "art_director"
+msgstr ""
+
+#: .\movies\models.py:96
+msgid "composer"
+msgstr ""
+
+#: .\movies\models.py:100
 msgid "role"
 msgstr ""

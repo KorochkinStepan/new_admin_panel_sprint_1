@@ -24,7 +24,7 @@ class Genre(UUIDMixin, TimeStampedMixin):
         return self.name
 
     name = models.TextField(_("name"), null=False)
-    description = models.TextField(_("description"), blank=True, null=True)
+    description = models.TextField(_("description"), blank=True)
 
     class Meta:
         db_table = 'content"."genre'
@@ -42,7 +42,9 @@ class Person(UUIDMixin, TimeStampedMixin):
         db_table = 'content"."person'
         verbose_name = _("Person")
         verbose_name_plural = _("Persons")
-
+        indexes = [
+            models.Index("full_name", name="person_full_name_idx"),
+        ]
 
 class FilmWork(UUIDMixin, TimeStampedMixin):
     def __str__(self):
@@ -51,9 +53,9 @@ class FilmWork(UUIDMixin, TimeStampedMixin):
     MIN_LIMIT = MinValueValidator(limit_value=0)
     MAX_LIMIT = MaxValueValidator(limit_value=10)
     TYPE_CHOICES = [("movie", _("film")), ("tv_show", _("tv show"))]
-    file_path = models.TextField(_("file_path"), null=True, blank=True)
+    file_path = models.TextField(_("file_path"), blank=True)
     title = models.TextField(_("title"), null=False)
-    description = models.TextField(_("description"), blank=True, null=True)
+    description = models.TextField(_("description"), blank=True)
     creation_date = models.DateField(_("creation_date"), blank=True, null=True)
     rating = models.FloatField(
         _("rating"), validators=[MIN_LIMIT, MAX_LIMIT], blank=True, null=True
@@ -65,7 +67,10 @@ class FilmWork(UUIDMixin, TimeStampedMixin):
         db_table = 'content"."film_work'
         verbose_name = _("Film Work")
         verbose_name_plural = _("Films")
-
+        indexes = [
+            models.Index("creation_date", name="film_work_creation_date_idx"),
+            models.Index("title", name="film_work_title_idx"),
+        ]
 
 class GenreFilmWork(UUIDMixin):
     film_work = models.ForeignKey(
@@ -76,13 +81,27 @@ class GenreFilmWork(UUIDMixin):
 
     class Meta:
         db_table = 'content"."genre_film_work'
-
+        indexes = [
+            models.Index("film_work_id", "genre_id", name="genre_film_work_idx"),
+        ]
 
 class PersonFilmWork(UUIDMixin):
+    class Role(models.TextChoices):
+        ACTOR = 'actor', _('actor')
+        PRODUCER = 'producer', _('producer')
+        DIRECTOR = 'director', _('director')
+        WRITER = 'writer', _('writer')
+        SCREENWRITER = 'screenwriter', _('screenwriter')
+        ART_DIRECTOR = 'art_director', _('art_director')
+        COMPOSER = 'composer', _('composer')
+
     film_work = models.ForeignKey("FilmWork", on_delete=models.CASCADE)
     person = models.ForeignKey("Person", on_delete=models.CASCADE)
-    role = models.TextField(_("role"), null=False)
+    role = models.TextField(_("role"), choices=Role.choices, null=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         db_table = 'content"."person_film_work'
+        indexes = [
+            models.Index("film_work_id", "person_id", "role", name="person_film_work_idx"),
+        ]
